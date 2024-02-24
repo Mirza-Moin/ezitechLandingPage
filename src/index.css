@@ -23,7 +23,16 @@ li{
 }
 .course-card img{
     max-height: 160px;
+    object-fit: cover;
 }
 .course-card:hover img{
     max-height: 130px;
 }
+.footer{
+    background: linear-gradient(to bottom, #0e2b70 50%,#042d89 50%);
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }

@@ -4,6 +4,12 @@ import { CiStar } from "react-icons/ci";
 import { FaUserTie } from "react-icons/fa6";
 import { FaLocationArrow } from "react-icons/fa";
 import { FaBagShopping } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaPhone } from "react-icons/fa6";
+import { IoMail } from "react-icons/io5";
+
+import { FaBehance, FaFacebook, FaLinkedinIn } from "react-icons/fa";
+import { Typewriter } from "react-simple-typewriter";
 
 import DesktopNavBar from "./components/DesktopNavBar";
 import MobileNavBar from "./components/MobileNavBar";
@@ -20,14 +26,95 @@ function App() {
 
         {/* HERO SECTION */}
         <div
-          className="h-screen w-full bg-img"
+          className="h-screen  w-full bg-img "
           style={{
             backgroundImage:
               'url("https://ezitech.org/wp-content/uploads/2024/02/111.jpg")',
           }}
         >
-          <div className="w-full h-full  bg-[rgba(30,64,175,0.4)]">
+          <div className="w-full h-full  bg-[rgba(30,64,175,0.4)] pb-16">
             <DesktopNavBar />
+
+            <div>
+              <h1 className="text-white text-[48px] font-[700] w-[50%] mx-auto pt-32 text-center">
+                Learn the fundamentals with our experts in
+                <span className="text-[#2575ed] text-[48px] font-[700]">
+                  <Typewriter
+                    words={[
+                      " Programming",
+                      " Web Design",
+                      " Social Skills",
+                      " Marketing",
+                    ]}
+                    loop={false}
+                    cursor
+                    cursorStyle="_"
+                    typeSpeed={70}
+                    deleteSpeed={50}
+                    delaySpeed={1000}
+                  />
+                </span>
+              </h1>
+              <p className="text-white text-[24px] font-[400] text-center mt-5 hidden lg1:block">
+                Utilize Effective Training to Reach Your Potential!
+              </p>
+
+              <div class="relative w-[30%] mx-auto mt-10 lg1:block hidden">
+                <input
+                  type="search"
+                  id="location-search"
+                  className="block pl-5 py-5 w-full z-20 text-lg text-black bg-gray-50 rounded-lg focus:outline-none text- "
+                  placeholder="Search Courses..."
+                  required
+                />
+                <button
+                  type="submit"
+                  className="absolute top-0 end-0 h-full pr-5 py-5 text-lg hover:text-xl font-bold text-gray-500 rounded-e-lg "
+                >
+                  <svg
+                    class="w-4 h-4"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                    />
+                  </svg>
+                  <span class="sr-only">Search</span>
+                </button>
+              </div>
+
+              <p className="text-center text-white text-[20px] font-[400] mt-10 lg1:block hidden">
+                Explore our more useful products
+              </p>
+
+              <div className="w-[50%] mx-auto lg1:flex items-center justify-center gap-5 hidden ">
+                <img
+                  className="w-[250px] h-auto"
+                  style={{ objectFit: "contain" }}
+                  src="https://ezitech.org/wp-content/uploads/2023/10/EZIBLOGS-DG.png"
+                  alt=""
+                />
+                <img
+                  className="w-[200px] h-auto "
+                  style={{ objectFit: "contain" }}
+                  src="https://ezitech.org/wp-content/uploads/2023/11/white-ezipos.png"
+                  alt=""
+                />
+                <img
+                  className="w-[300px] h-auto"
+                  style={{ objectFit: "contain" }}
+                  src="https://ezitech.org/wp-content/uploads/2023/10/white-lgooo-01.png"
+                  alt=""
+                />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -934,8 +1021,152 @@ function App() {
           </div>
         </section>
         {/* LEARNING ANYTIME */}
-        <section className="mt-20">
+        <section className="mt-40">
+          <div className="w-[75%] mx-auto flex justify-between ">
+            <div className=" flex justify-center  w-[50%]">
+              <div className="bg-[#385bce] w-[500px] h-[500px] rounded-full ">
+                <img
+                  className="relative -top-20 -left-5"
+                  src="https://ezitech.org/wp-content/uploads/2022/11/phone-copy.webp"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div className="w-[40%] justify-self-end">
+              <h1 className="text-[#273044] text-[46px] font-[700] ">
+                Learn <span className="text-[#2575ed]">anytime</span> from
+                anywhere
+              </h1>
+              <p className="text-[#273044] text-[16px] font-[400] leading-loose mt-5">
+                Increase the mobility level with Eziline Technologies LMS App.
+                Take your courses in your pocket and access them whenever you
+                want without any limits. Make your learning more engaging and
+                productive using modern LMS app.
+              </p>
 
+              <div className="mt-7 flex gap-5">
+                <img
+                  className="cursor-pointer"
+                  src="https://ezitech.org/wp-content/uploads/2022/11/appstore-copy.webp"
+                  alt=""
+                />
+                <img
+                  className="cursor-pointer"
+                  src="https://stylemixthemes.com/masterstudy/tech/wp-content/uploads/sites/21/2021/02/%D0%98%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_22.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <section className="footer py-10 mt-[9rem]">
+          <h1 className="text-white text-[36px] font-[700] text-center w-[40%] mx-auto">
+            It’s time to <span className="text-blue-500">start</span> investing
+            in yourself
+          </h1>
+          <img
+            className="w-100% mx-auto px-10 mt-10"
+            src="https://ezitech.org/wp-content/uploads/2023/03/8-3-1441x555-copy-1438x554.webp"
+            alt=""
+          />
+
+          <div className="mt-10 w-[90%] xl:w-[85%] 2xl:w-[75%] px-5 sm:mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-white">
+            <div>
+              <h1 className="text-[18px] font-[700]">ABOUT</h1>
+              <p className="text-[13px] font-[400] mt-5">
+                Ezitech Institute provides a platform for newcomers to launch
+                their IT and freelancing careers. Our emphasis on practical
+                information technology courses that are career and work oriented
+                makes us the top computer institute in Rawalpindi, Islamabad,
+                Pakistan.
+              </p>
+            </div>
+            <div>
+              <h1 className="text-[18px] font-[700]">POPULAR COURSES</h1>
+              <div className="flex gap-5 mt-5">
+                <img
+                  className="w-[50px] h-[50px]"
+                  src="https://ezitech.org/wp-content/uploads/2023/03/shutterstock_1936430215-_FILEminimizer_-75x75.webp"
+                  alt=""
+                />
+                <div>
+                  <h1 className="text-[14px] font-[700]">
+                    Online Arbitrage Mastermind 2.0 [R...
+                  </h1>
+                  <span className="text-[#AAAAAA] text-[12px] font-[400]">
+                    By Husnain Ali
+                  </span>
+                </div>
+              </div>
+              <div className="flex gap-5 mt-5">
+                <img
+                  className="w-[50px] h-[50px]"
+                  src="https://ezitech.org/wp-content/uploads/2023/07/5167842_cafe-75x75.webp"
+                  alt=""
+                />
+                <div className="">
+                  <h1 className="text-[14px] font-[700]">
+                    Adobe Illustrator Course With Project...
+                  </h1>
+                  <span className="text-[#AAAAAA] text-[12px] font-[400]">
+                    By Husnain Ali
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h1 className="text-[18px] font-[700]">PAGES</h1>
+              <ul className="list-disc mt-5 flex flex-col gap-3">
+                <li className="text-[12px] font-[400] ">CONTACT US</li>
+                <li className="text-[12px] font-[400]">SHOP</li>
+                <li className="text-[12px] font-[400]">INTERNSHIP</li>
+                <li className="text-[12px] font-[400]">CODELAB</li>
+              </ul>
+            </div>
+            <div>
+              <h1 className="text-[18px] font-[700]">CONTACT</h1>
+              <ul className=" mt-5 flex flex-col gap-3">
+                <li className="text-[12px] font-[400] ">
+                  <div className="flex gap-5 ">
+                    <FaLocationDot className="text-3xl text-[#2575ed]" />
+                    <span>
+                      Office #304-B Amna Plaza, near Radio Pakistan, Rawalpindi,
+                      Punjab 46000
+                    </span>
+                  </div>
+                </li>
+                <li className="text-[12px] font-[400]">
+                  <div className="flex gap-5 ">
+                    <FaPhone className="text-[16px] text-[#2575ed]" />
+                    <span>+923455555396</span>
+                  </div>
+                </li>
+                <li className="text-[12px] font-[400]">
+                  <div className="flex gap-5 ">
+                    <IoMail className="text-xl text-[#2575ed]" />
+                    <span className="hover:text-[#2525ed]">
+                      info@ezitech.org
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <p className="text-white text-[14px] font-[400] text-center mt-20">
+            Copyright © 2024 Ezitech Institute | Design & Develop by{" "}
+            <span className="cursor-pointer hover:text-[#2575ed]">
+              Eziline Software House
+            </span>
+          </p>
+
+          <div className="w-[80%] mx-auto flex gap-5 justify-end ">
+            <FaFacebook className="text-white hover:text-[#2525ed] cursor-pointer" />
+            <FaBehance className="text-white hover:text-[#2525ed] cursor-pointer" />
+            <FaLinkedinIn className="text-white hover:text-[#2525ed] cursor-pointer" />
+          </div>
         </section>
       </div>
     </>
