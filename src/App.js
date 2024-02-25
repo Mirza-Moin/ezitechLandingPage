@@ -1,3 +1,4 @@
+import { useState,useEffect } from "react";
 import { MdOutlineWatchLater } from "react-icons/md";
 import { IoEyeOutline } from "react-icons/io5";
 import { CiStar } from "react-icons/ci";
@@ -7,6 +8,7 @@ import { FaBagShopping } from "react-icons/fa6";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
+import { FaHeart } from "react-icons/fa";
 
 import { FaBehance, FaFacebook, FaLinkedinIn } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
@@ -14,8 +16,54 @@ import { Typewriter } from "react-simple-typewriter";
 import DesktopNavBar from "./components/DesktopNavBar";
 import MobileNavBar from "./components/MobileNavBar";
 import TopHeader from "./components/TopHeader";
+import { GiCardKingClubs } from "react-icons/gi";
 
 function App() {
+  const [text, setText] = useState('');
+  const [words, setWords] = useState(['Hello', 'World', 'React', 'Typewriter']);
+  const [index, setIndex] = useState(0);
+  const [showText, setShowText] = useState(false);
+  const [transform, setTransform] = useState("translate(0px, 0px)");
+  const handleMouseMove = (e) => {
+    console.log("running");
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+    const distanceThreshold = 2000; // Adjust this value as needed
+    console.log(mouseX);
+    // Get the center coordinates of the div
+    const div = document.getElementById("movingDiv");
+    const divRect = div.getBoundingClientRect();
+    const divCenterX = divRect.left + divRect.width / 2;
+    const divCenterY = divRect.top + divRect.height / 2;
+
+    // Calculate the distance between the mouse and the center of the div
+    const distance = Math.sqrt(
+      Math.pow(mouseX - divCenterX, 2) + Math.pow(mouseY - divCenterY, 2)
+    );
+
+    // If mouse is within the distance threshold, calculate movement and update state
+    if (distance < distanceThreshold) {
+      const moveX = ((mouseX - divCenterX) / distanceThreshold) * 150;
+      const moveY = ((mouseY - divCenterY) / distanceThreshold) * 150;
+      console.log(moveX);
+      console.log(moveY);
+      setTransform(`translate(${moveX}px, ${moveY}px)`);
+    } else {
+      setTransform("translate(0px, 0px)");
+    }
+  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowText(false); // Hide text
+      setTimeout(() => {
+        setText(words[index]); // Show text
+        setIndex((index + 1) % words.length); // Move to next word
+        setShowText(true);
+      }, 500); // Delay before showing text again
+    }, 2000); // Interval between words
+
+    return () => clearInterval(interval);
+  }, [index, words]);
   return (
     <>
       <div className="bg-white select-none">
@@ -26,7 +74,7 @@ function App() {
 
         {/* HERO SECTION */}
         <div
-          className="max-h-max   w-screen bg-img   "
+          className="max-h-max    bg-img   "
           style={{
             backgroundImage:
               'url("https://ezitech.org/wp-content/uploads/2024/02/111.jpg")',
@@ -36,8 +84,10 @@ function App() {
             <DesktopNavBar />
 
             <div>
-              <h1 className="text-white text-[48px] font-[700] w-[80%] lg:w-[60%] mx-auto pt-32  text-center">
-                Learn the fundamentals with our experts in
+              <div className="">
+              <h1 className="text-white lg:text-[48px] text-[40px] font-[700] xl:w-[80%] w-[90%] 2xl:w-[60%] mx-auto pt-32  text-center">
+                Learn the fundamentals with our experts in{" "}
+                <br className="md:hidden visible" />
                 <span className="text-[#2575ed] text-[48px] font-[700]">
                   <Typewriter
                     words={[
@@ -55,15 +105,19 @@ function App() {
                   />
                 </span>
               </h1>
+              {/* <span className="w-[200px] border border-red-500">
+                {showText && <span >{text}</span>}
+                </span> */}
+                </div>
               <p className="text-white text-[24px] font-[400] text-center mt-5 hidden lg1:block">
                 Utilize Effective Training to Reach Your Potential!
               </p>
 
-              <div class="relative w-[30%] mx-auto mt-10 lg1:block hidden ">
+              <div class="relative w-[40%] mx-auto mt-10 lg1:block hidden ">
                 <input
                   type="search"
                   id="location-search"
-                  className="block pl-5 py-5 w-full z-20 text-lg text-black bg-gray-50 rounded-lg focus:outline-none text- "
+                  className="block pl-5 py-4 w-full z-20 text-lg text-black bg-gray-50 rounded-lg focus:outline-none text- "
                   placeholder="Search Courses..."
                   required
                 />
@@ -89,10 +143,12 @@ function App() {
                   <span class="sr-only">Search</span>
                 </button>
               </div>
-
-              <p className="text-center text-white text-[20px] font-[400] mt-10 lg1:block hidden">
-                Explore our more useful products
-              </p>
+              <div className="text-white flex gap-3 justify-center items-center mt-10">
+                <p className="text-center text-white text-[20px] font-[400]  lg1:block hidden fonts">
+                  Explore our more useful products
+                </p>
+                <FaHeart />
+              </div>
 
               <div className="w-[50%] mx-auto lg1:flex items-center justify-center gap-5 hidden relative">
                 <img
@@ -109,7 +165,7 @@ function App() {
                 />
                 <img
                   className="w-[300px] h-auto mb-5 "
-                  style={{ objectFit:"cover" }}
+                  style={{ objectFit: "cover" }}
                   src="https://ezitech.org/wp-content/uploads/2023/10/white-lgooo-01.png"
                   alt=""
                 />
@@ -197,24 +253,28 @@ function App() {
             development.
           </p>
 
-          <div className="  grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 w-[80%] gap-10  mx-auto mt-10">
-            <div className="py-2 bg-white rounded-xl cursor-pointer hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 shadow-2xl">
+          <div className="  grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 w-[80%] gap-10 gap-y-10  mx-auto mt-10">
+            <div className="py-2 bg-white rounded-xl cursor-pointer hover:-translate-y-3 transition-all duration-250 ease-linear  shadow-2xl">
               <img
                 className="w-[69px] h-[69px] mx-auto"
                 src="https://ezitech.org/wp-content/uploads/2022/05/artificial-intelligence-3-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3 turncate">ML & AI</p>
+              <p className="text-center font-bold mt-3 py-3 turncate">
+                ML & AI
+              </p>
             </div>
-            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
+            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear  cursor-pointer">
               <img
                 className="w-[69px] h-[69px] mx-auto"
                 src="https://ezitech.org/wp-content/uploads/2022/05/blockchain-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3 truncate">Block Chain</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">
+                Block Chain
+              </p>
             </div>
-            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
+            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear  cursor-pointer">
               <img
                 className="w-[69px] h-[69px] mx-auto"
                 src="https://ezitech.org/wp-content/uploads/2022/05/aaaa-69x69.png"
@@ -222,31 +282,37 @@ function App() {
               />
               <p className="text-center font-bold mt-3 py-3 truncate">Amazon</p>
             </div>
-            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
+            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear  cursor-pointer">
               <img
                 className="py-2 w-[69px] h-[69px] mx-auto"
                 src="https://ezitech.org/wp-content/uploads/2022/05/cccccc-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3 truncate">Cyber Security</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">
+                Cyber Security
+              </p>
             </div>
-            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
+            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear  cursor-pointer">
               <img
                 className="w-[69px] h-[69px] mx-auto"
                 src="https://ezitech.org/wp-content/uploads/2022/05/ffff-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3 truncate">Development</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">
+                Development
+              </p>
             </div>
-            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
+            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear  cursor-pointer">
               <img
                 className="w-[69px] h-[69px] mx-auto"
                 src="https://ezitech.org/wp-content/uploads/2022/05/www-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3 truncate">Designing</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">
+                Designing
+              </p>
             </div>
-            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
+            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear  cursor-pointer">
               <img
                 className="w-[69px] h-[69px] mx-auto"
                 src="https://ezitech.org/wp-content/uploads/2022/05/vvvv-69x69.png"
@@ -254,31 +320,37 @@ function App() {
               />
               <p className="text-center font-bold mt-3 py-3 truncate">Gaming</p>
             </div>
-            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
+            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear  cursor-pointer">
               <img
                 className="w-[69px] h-[69px] mx-auto"
                 src="https://ezitech.org/wp-content/uploads/2022/05/ssss-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3 truncate">Architecture</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">
+                Architecture
+              </p>
             </div>
-            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
+            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear  cursor-pointer">
               <img
                 className="w-[69px] h-[69px] mx-auto"
                 src="https://ezitech.org/wp-content/uploads/2022/05/aaaaaaaaaaaaaaaaaaaaaa-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3 truncate">IOS & AND</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">
+                IOS & AND
+              </p>
             </div>
-            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
+            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear  cursor-pointer">
               <img
                 className="w-[69px] h-[69px] mx-auto"
                 src="https://ezitech.org/wp-content/uploads/2022/10/social-media-1-63x63.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3 truncate">Marketing</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">
+                Marketing
+              </p>
             </div>
-            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
+            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear  cursor-pointer">
               <img
                 className="w-[69px] h-[69px] mx-auto"
                 src="https://ezitech.org/wp-content/uploads/2023/03/3d-68x68.png"
@@ -286,13 +358,15 @@ function App() {
               />
               <p className="text-center font-bold mt-3 py-3 truncate">3D</p>
             </div>
-            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
+            <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear  cursor-pointer">
               <img
                 className="w-[69px] h-[69px] mx-auto"
                 src="https://ezitech.org/wp-content/uploads/2023/03/animation-68x68.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3 truncate">Annimation</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">
+                Annimation
+              </p>
             </div>
           </div>
         </section>
@@ -302,291 +376,318 @@ function App() {
           <h1 className="text-[36px] font-[700] text-[#273044] text-center mt-32">
             Recommended Course's
           </h1>
+
           <section className="mt-10 px-5 grid-cols-1 md:grid-cols-3 grid lg:grid-cols-5">
             {/* card */}
-            <div className="group p-5 course-card">
-              <div>
-                <img
-                  className="w-full grop-hover:h-[140px]"
-                  // style={{ maxHeight: "160px" }}
-                  src="https://ezitech.org/wp-content/uploads/2022/10/linkedin-search-300x225.webp"
-                  alt=""
-                />
-                {/* course info */}
-                <div className="px-2">
-                  <p className="text-[#4D5E6F] text-[13px] font-[400] mt-3">
-                    Free Courses
-                  </p>
-                  <p className="text-[#001931] text-[15px] font-[500] mt-2">
-                    LinkedIn Orientation
-                  </p>
-                  <div className="mt-8 border-b border-gray-300 pb-4">
-                    <div className="bg-[#eef1f7] px-3 py-2 rounded-md  flex items-center justify-between ">
-                      <div className="flex gap-2 items-center">
-                        <MdOutlineWatchLater className="text-[#4D5E6F]" />
-                        <p className="text-[#4D5E6F] text-[14px] font-[400]">
-                          2h 12m
-                        </p>
-                      </div>
-                      <div className="flex gap-2 items-center">
-                        <IoEyeOutline className="text-[#4D5E6F]" />
-                        <p className="text-[#4D5E6F] text-[14px] font-[400]">
-                          724
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 flex justify-between items-start">
-                    <div className="flex items-center">
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-
-                      <p className="text-[#4D5E6F] text-[13px] font-[400]">
-                        0.0
+            <div class="relative  overflow-hidden  group course-card">
+              <div class="h-full overflow-y-auto">
+                {/* cardbody start */}
+                <div className="group p-5 course-card">
+                  <div>
+                    <img
+                      className="w-full transition-all ease-in  duration-300 hover:h-[140px]"
+                      // style={{ maxHeight: "160px" }}
+                      src="https://ezitech.org/wp-content/uploads/2022/10/linkedin-search-300x225.webp"
+                      alt=""
+                    />
+                    {/* course info */}
+                    <div className="px-2">
+                      <p className="text-[#4D5E6F] text-[13px] font-[400] mt-3">
+                        Free Courses
                       </p>
-                    </div>
-                    <p className="text-black text-[15px] font-bold mt-2">
-                      Free
-                    </p>
-                  </div>
+                      <p className="text-[#001931] text-[15px] font-[500] mt-2">
+                        LinkedIn Orientation
+                      </p>
+                      <div className="mt-8 border-b border-gray-300 pb-4">
+                        <div className="bg-[#eef1f7] px-3 py-2 rounded-md  flex items-center justify-between ">
+                          <div className="flex gap-2 items-center">
+                            <MdOutlineWatchLater className="text-[#4D5E6F]" />
+                            <p className="text-[#4D5E6F] text-[14px] font-[400]">
+                              2h 12m
+                            </p>
+                          </div>
+                          <div className="flex gap-2 items-center">
+                            <IoEyeOutline className="text-[#4D5E6F]" />
+                            <p className="text-[#4D5E6F] text-[14px] font-[400]">
+                              724
+                            </p>
+                          </div>
+                        </div>
+                      </div>
 
-                  <button className="w-full mt-5 rounded-lg text-white bg-blue-600 text-[14px] font-[400] px-5 py-3 hidden group-hover:block">
-                    Preview the course
-                  </button>
+                      <div className="mt-6 flex justify-between items-start">
+                        <div className="flex items-center">
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+
+                          <p className="text-[#4D5E6F] text-[13px] font-[400]">
+                            0.0
+                          </p>
+                        </div>
+                        <p className="text-black text-[15px] font-bold mt-2">
+                          Free
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                {/* cardbody end */}
               </div>
+              <button class=" w-[80%]  mt-5  rounded-lg text-white bg-blue-600 text-[14px] font-[400] px-5 py-3  absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full transition-all ease-in  duration-300 group-hover:translate-y-0 group-hover:opacity-100 ">
+                Preview the course
+              </button>
             </div>
+
             {/* card2 */}
-            <div className="group p-5 course-card">
-              <div>
-                <img
-                  className="w-full"
-                  // style={{ maxHeight: "160px" }}
-                  src="http://ezitech.org/wp-content/uploads/2022/10/post-3-300x225.jpg"
-                  alt=""
-                />
-                {/* course info */}
-                <div className="px-2">
-                  <p className="text-[#4D5E6F] text-[13px] font-[400] mt-3">
-                    Free Courses
-                  </p>
-                  <p className="text-[#001931] text-[15px] font-[500] mt-2">
-                    Search Engine Optimization (SE0)
-                  </p>
-                  <div className="mt-8 border-b border-gray-300 pb-4">
-                    <div className="bg-[#eef1f7] px-3 py-2 rounded-md  flex items-center justify-between ">
-                      <div className="flex gap-2 items-center">
-                        <MdOutlineWatchLater className="text-[#4D5E6F]" />
-                        <p className="text-[#4D5E6F] text-[14px] font-[400]">
-                          15h 34m
-                        </p>
-                      </div>
-                      <div className="flex gap-2 items-center">
-                        <IoEyeOutline className="text-[#4D5E6F]" />
-                        <p className="text-[#4D5E6F] text-[14px] font-[400]">
-                          681
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 flex justify-between items-start">
-                    <div className="flex items-center">
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-
-                      <p className="text-[#4D5E6F] text-[13px] font-[400]">
-                        0.0
+            <div class="relative  overflow-hidden group">
+              <div class="h-full overflow-y-auto">
+                {/* content */}
+                <div className="group p-5 course-card">
+                  <div>
+                    <img
+                      className="w-full transition-all ease-in  duration-300 hover:h-[140px]"
+                      // style={{ maxHeight: "160px" }}
+                      src="http://ezitech.org/wp-content/uploads/2022/10/post-3-300x225.jpg"
+                      alt=""
+                    />
+                    {/* course info */}
+                    <div className="px-2">
+                      <p className="text-[#4D5E6F] text-[13px] font-[400] mt-3">
+                        Free Courses
                       </p>
-                    </div>
-                    <p className="text-black text-[15px] font-bold mt-2">
-                      Free
-                    </p>
-                  </div>
+                      <p className="text-[#001931] text-[15px] font-[500] mt-2">
+                        Search Engine Optimization (SE0)
+                      </p>
+                      <div className="mt-8 border-b border-gray-300 pb-4">
+                        <div className="bg-[#eef1f7] px-3 py-2 rounded-md  flex items-center justify-between ">
+                          <div className="flex gap-2 items-center">
+                            <MdOutlineWatchLater className="text-[#4D5E6F]" />
+                            <p className="text-[#4D5E6F] text-[14px] font-[400]">
+                              15h 34m
+                            </p>
+                          </div>
+                          <div className="flex gap-2 items-center">
+                            <IoEyeOutline className="text-[#4D5E6F]" />
+                            <p className="text-[#4D5E6F] text-[14px] font-[400]">
+                              681
+                            </p>
+                          </div>
+                        </div>
+                      </div>
 
-                  <button className="w-full mt-5 rounded-lg text-white bg-blue-600 text-[14px] font-[400] px-5 py-3 hidden group-hover:block">
-                    Preview the course
-                  </button>
+                      <div className="mt-6 flex justify-between items-start">
+                        <div className="flex items-center">
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+
+                          <p className="text-[#4D5E6F] text-[13px] font-[400]">
+                            0.0
+                          </p>
+                        </div>
+                        <p className="text-black text-[15px] font-bold mt-2">
+                          Free
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <button class=" w-[80%]  mt-5  rounded-lg text-white bg-blue-600 text-[14px] font-[400] px-5 py-3  absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full transition-all ease-in  duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                Preview the course
+              </button>
             </div>
+
             {/* card 3 */}
-            <div className="group p-5 course-card">
-              <div>
-                <img
-                  className="w-full"
-                  // style={{ maxHeight: "160px" }}
-                  src="http://ezitech.org/wp-content/uploads/2022/10/Instagram-vs-Facebook-Which-is-Better-for-Video-Marketing-300x225.png"
-                  alt=""
-                />
-                {/* course info */}
-                <div className="px-2">
-                  <p className="text-[#4D5E6F] text-[13px] font-[400] mt-3">
-                    Free Courses
-                  </p>
-                  <p className="text-[#001931] text-[15px] font-[500] mt-2">
-                    Ads on Instagram, Facebook & Twitter
-                  </p>
-                  <div className="mt-8 border-b border-gray-300 pb-4">
-                    <div className="bg-[#eef1f7] px-3 py-2 rounded-md  flex items-center justify-between ">
-                      <div className="flex gap-2 items-center">
-                        <MdOutlineWatchLater className="text-[#4D5E6F]" />
-                        <p className="text-[#4D5E6F] text-[14px] font-[400]">
-                          3h 42m
-                        </p>
-                      </div>
-                      <div className="flex gap-2 items-center">
-                        <IoEyeOutline className="text-[#4D5E6F]" />
-                        <p className="text-[#4D5E6F] text-[14px] font-[400]">
-                          676
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 flex justify-between items-start">
-                    <div className="flex items-center">
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-
-                      <p className="text-[#4D5E6F] text-[13px] font-[400]">
-                        0.0
+            <div class="relative  overflow-hidden group">
+              <div class="h-full overflow-y-auto">
+                {/* content */}
+                <div className="group p-5 course-card">
+                  <div>
+                    <img
+                      className="w-full transition-all ease-in  duration-300 hover:h-[140px]"
+                      // style={{ maxHeight: "160px" }}
+                      src="http://ezitech.org/wp-content/uploads/2022/10/Instagram-vs-Facebook-Which-is-Better-for-Video-Marketing-300x225.png"
+                      alt=""
+                    />
+                    {/* course info */}
+                    <div className="px-2">
+                      <p className="text-[#4D5E6F] text-[13px] font-[400] mt-3">
+                        Free Courses
                       </p>
-                    </div>
-                    <p className="text-black text-[15px] font-bold mt-2">
-                      Free
-                    </p>
-                  </div>
+                      <p className="text-[#001931] text-[15px] font-[500] mt-2">
+                        Ads on Instagram, Facebook & Twitter
+                      </p>
+                      <div className="mt-8 border-b border-gray-300 pb-4">
+                        <div className="bg-[#eef1f7] px-3 py-2 rounded-md  flex items-center justify-between ">
+                          <div className="flex gap-2 items-center">
+                            <MdOutlineWatchLater className="text-[#4D5E6F]" />
+                            <p className="text-[#4D5E6F] text-[14px] font-[400]">
+                              3h 42m
+                            </p>
+                          </div>
+                          <div className="flex gap-2 items-center">
+                            <IoEyeOutline className="text-[#4D5E6F]" />
+                            <p className="text-[#4D5E6F] text-[14px] font-[400]">
+                              676
+                            </p>
+                          </div>
+                        </div>
+                      </div>
 
-                  <button className="w-full mt-5 rounded-lg text-white bg-blue-600 text-[14px] font-[400] px-5 py-3 hidden group-hover:block">
-                    Preview the course
-                  </button>
+                      <div className="mt-6 flex justify-between items-start">
+                        <div className="flex items-center">
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+
+                          <p className="text-[#4D5E6F] text-[13px] font-[400]">
+                            0.0
+                          </p>
+                        </div>
+                        <p className="text-black text-[15px] font-bold mt-2">
+                          Free
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <button class=" w-[80%]  mt-5  rounded-lg text-white bg-blue-600 text-[14px] font-[400] px-5 py-3  absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full transition-all ease-in  duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                Preview the course
+              </button>
             </div>
+
             {/* card 4 */}
-            <div className="group p-5 course-card">
-              <div>
-                <img
-                  className="w-full"
-                  // style={{ maxHeight: "160px" }}
-                  src="http://ezitech.org/wp-content/uploads/2022/10/What-is-a-digital-marketing-agency-300x225.webp"
-                  alt=""
-                />
-                {/* course info */}
-                <div className="px-2">
-                  <p className="text-[#4D5E6F] text-[13px] font-[400] mt-3">
-                    Free Courses
-                  </p>
-                  <p className="text-[#001931] text-[15px] font-[500] mt-2">
-                    Definition For Digital Marketing
-                  </p>
-                  <div className="mt-8 border-b border-gray-300 pb-4">
-                    <div className="bg-[#eef1f7] px-3 py-2 rounded-md  flex items-center justify-between ">
-                      <div className="flex gap-2 items-center">
-                        <MdOutlineWatchLater className="text-[#4D5E6F]" />
-                        <p className="text-[#4D5E6F] text-[14px] font-[400]">
-                          3h 42m
-                        </p>
-                      </div>
-                      <div className="flex gap-2 items-center">
-                        <IoEyeOutline className="text-[#4D5E6F]" />
-                        <p className="text-[#4D5E6F] text-[14px] font-[400]">
-                          632
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 flex justify-between items-start">
-                    <div className="flex items-center">
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-
-                      <p className="text-[#4D5E6F] text-[13px] font-[400]">
-                        0.0
+            <div class="relative overflow-hidden group">
+              <div class="h-full overflow-y-auto">
+                {/* content */}
+                <div className="group p-5 course-card">
+                  <div>
+                    <img
+                      className="w-full transition-all ease-in  duration-300 hover:h-[140px]"
+                      // style={{ maxHeight: "160px" }}
+                      src="http://ezitech.org/wp-content/uploads/2022/10/What-is-a-digital-marketing-agency-300x225.webp"
+                      alt=""
+                    />
+                    {/* course info */}
+                    <div className="px-2">
+                      <p className="text-[#4D5E6F] text-[13px] font-[400] mt-3">
+                        Free Courses
                       </p>
-                    </div>
-                    <p className="text-black text-[15px] font-bold mt-2">
-                      Free
-                    </p>
-                  </div>
+                      <p className="text-[#001931] text-[15px] font-[500] mt-2">
+                        Definition For Digital Marketing
+                      </p>
+                      <div className="mt-8 border-b border-gray-300 pb-4">
+                        <div className="bg-[#eef1f7] px-3 py-2 rounded-md  flex items-center justify-between ">
+                          <div className="flex gap-2 items-center">
+                            <MdOutlineWatchLater className="text-[#4D5E6F]" />
+                            <p className="text-[#4D5E6F] text-[14px] font-[400]">
+                              3h 42m
+                            </p>
+                          </div>
+                          <div className="flex gap-2 items-center">
+                            <IoEyeOutline className="text-[#4D5E6F]" />
+                            <p className="text-[#4D5E6F] text-[14px] font-[400]">
+                              632
+                            </p>
+                          </div>
+                        </div>
+                      </div>
 
-                  <button className="w-full mt-5 rounded-lg text-white bg-blue-600 text-[14px] font-[400] px-5 py-3 hidden group-hover:block">
-                    Preview the course
-                  </button>
+                      <div className="mt-6 flex justify-between items-start">
+                        <div className="flex items-center">
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+
+                          <p className="text-[#4D5E6F] text-[13px] font-[400]">
+                            0.0
+                          </p>
+                        </div>
+                        <p className="text-black text-[15px] font-bold mt-2">
+                          Free
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <button class=" w-[80%]  mt-5  rounded-lg text-white bg-blue-600 text-[14px] font-[400] px-5 py-3  absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full transition-all ease-in  duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                Preview the course
+              </button>
             </div>
+
             {/* card 5 */}
-            <div className="group p-5 course-card">
-              <div>
-                <img
-                  className="w-full"
-                  // style={{ maxHeight: "160px" }}
-                  src="http://ezitech.org/wp-content/uploads/2023/03/7-tips-to-manage-amazon-virtual-assistants-and-boost-productivity-1-300x225.webp"
-                  alt=""
-                />
-                {/* course info */}
-                <div className="px-2">
-                  <p className="text-[#4D5E6F] text-[13px] font-[400] mt-3">
-                    Free Courses
-                  </p>
-                  <p className="text-[#001931] text-[15px] font-bold mt-2">
-                    Vitual Assitant Training, a Complete Guide: Work From Home
-                  </p>
-                  <div className="mt-8 border-b border-gray-300 pb-4">
-                    <div className="bg-[#eef1f7] px-3 py-2 rounded-md  flex items-center justify-between ">
-                      <div className="flex gap-2 items-center">
-                        <MdOutlineWatchLater className="text-[#4D5E6F]" />
-                        <p className="text-[#4D5E6F] text-[14px] font-[400]">
-                          3 Months
-                        </p>
-                      </div>
-                      <div className="flex gap-2 items-center">
-                        <IoEyeOutline className="text-[#4D5E6F]" />
-                        <p className="text-[#4D5E6F] text-[14px] font-[400]">
-                          414
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 flex justify-between items-start">
-                    <div className="flex items-center">
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-                      <CiStar />
-
-                      <p className="text-[#4D5E6F] text-[13px] font-[400]">
-                        0.0
+            <div class="relative overflow-hidden group">
+              <div class="h-full overflow-y-auto">
+                {/* content */}
+                <div className="group p-5 course-card">
+                  <div>
+                    <img
+                      className="w-full transition-all ease-in  duration-300 hover:h-[140px]"
+                      // style={{ maxHeight: "160px" }}
+                      src="http://ezitech.org/wp-content/uploads/2023/03/7-tips-to-manage-amazon-virtual-assistants-and-boost-productivity-1-300x225.webp"
+                      alt=""
+                    />
+                    {/* course info */}
+                    <div className="px-2">
+                      <p className="text-[#4D5E6F] text-[13px] font-[400] mt-3">
+                        Free Courses
                       </p>
-                    </div>
-                    <p className="text-black text-[15px] font-bold mt-2">
-                      Free
-                    </p>
-                  </div>
+                      <p className="text-[#001931] text-[15px] font-bold mt-2">
+                        Vitual Assitant Training, a Complete Guide: Work From
+                        Home
+                      </p>
+                      <div className="mt-8 border-b border-gray-300 pb-4">
+                        <div className="bg-[#eef1f7] px-3 py-2 rounded-md  flex items-center justify-between ">
+                          <div className="flex gap-2 items-center">
+                            <MdOutlineWatchLater className="text-[#4D5E6F]" />
+                            <p className="text-[#4D5E6F] text-[14px] font-[400]">
+                              3 Months
+                            </p>
+                          </div>
+                          <div className="flex gap-2 items-center">
+                            <IoEyeOutline className="text-[#4D5E6F]" />
+                            <p className="text-[#4D5E6F] text-[14px] font-[400]">
+                              414
+                            </p>
+                          </div>
+                        </div>
+                      </div>
 
-                  <button className="w-full mt-5 rounded-lg text-white bg-blue-600 text-[14px] font-[400] px-5 py-3 hidden group-hover:block">
-                    Preview the course
-                  </button>
+                      <div className="mt-6 flex justify-between items-start">
+                        <div className="flex items-center">
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+
+                          <p className="text-[#4D5E6F] text-[13px] font-[400]">
+                            0.0
+                          </p>
+                        </div>
+                        <p className="text-black text-[15px] font-bold mt-2">
+                          Free
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <button class=" w-[80%]  mt-5  rounded-lg text-white bg-blue-600 text-[14px] font-[400] px-5 py-3  absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full  transition-all ease-in  duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                Preview the course
+              </button>
             </div>
           </section>
 
@@ -609,13 +710,13 @@ function App() {
             Best Internship's For You
           </h1>
 
-          <div className="2xl:w-[75%] xl:w-[85%] w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+          <div className="2xl:w-[75%] xl:w-[85%] w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 gap-y-10 mt-10">
             {/* card 1 */}
             <div className="intern-card shadow-lg rounded-bl-xl rounded-br-xl transition-transform duration-300 transform  hover:scale-105">
               <div className="text-white bg-blue-700 px-5 pt-5 pb-3 rounded-tl-xl rounded-tr-xl">
                 <div className="flex sm:flex-row flex-col justify-between items-center ">
                   <h1 className="text-[25px]  font-[700] pb-2 pr-7 border-b border-gray-300 leading-none sm:mt-0 mt-3 order-2">
-                    HTML/CSS <br className="sm:visible hidden"/> Javascript
+                    HTML/CSS <br className="sm:visible hidden" /> Javascript
                   </h1>
                   <img
                     className="w-[80px] order-1"
@@ -623,7 +724,9 @@ function App() {
                     alt=""
                   />
                 </div>
-                <p className="text-[14px] font-[400] text-center sm:text-start  text-center sm:text-start">Ezitech Institute</p>
+                <p className="text-[14px] font-[400] text-center sm:text-start  text-center sm:text-start">
+                  Ezitech Institute
+                </p>
               </div>
               <div className="px-7 pt-10">
                 <div className="flex flex-wrap items-center gap-3">
@@ -682,7 +785,7 @@ function App() {
               <div className="text-white bg-blue-700 px-5 pt-5 pb-3 rounded-tl-xl rounded-tr-xl">
                 <div className="flex sm:flex-row flex-col justify-between items-center ">
                   <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none sm:mt-0 mt-3 order-2">
-                    GRAPHIC <br className="sm:visible hidden"/> DESIGNING
+                    GRAPHIC <br className="sm:visible hidden" /> DESIGNING
                   </h1>
                   <img
                     className="w-[80px] order-1"
@@ -690,7 +793,9 @@ function App() {
                     alt=""
                   />
                 </div>
-                <p className="text-[14px] font-[400] text-center sm:text-start">Ezitech Institute</p>
+                <p className="text-[14px] font-[400] text-center sm:text-start">
+                  Ezitech Institute
+                </p>
               </div>
               <div className="px-7 pt-10">
                 <div className="flex flex-wrap items-center gap-3">
@@ -749,7 +854,7 @@ function App() {
               <div className="text-white bg-blue-700 px-5 pt-5 pb-3 rounded-tl-xl rounded-tr-xl">
                 <div className="flex sm:flex-row flex-col justify-between items-center ">
                   <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none sm:mt-0 mt-3 order-2">
-                    DIGITAL <br className="sm:visible hidden"/> MARKETING
+                    DIGITAL <br className="sm:visible hidden" /> MARKETING
                   </h1>
                   <img
                     className="w-[80px] order-1"
@@ -757,7 +862,9 @@ function App() {
                     alt=""
                   />
                 </div>
-                <p className="text-[14px] font-[400] text-center sm:text-start">Ezitech Institute</p>
+                <p className="text-[14px] font-[400] text-center sm:text-start">
+                  Ezitech Institute
+                </p>
               </div>
               <div className="px-7 pt-10">
                 <div className="flex flex-wrap items-center gap-3">
@@ -816,7 +923,7 @@ function App() {
               <div className="text-white bg-blue-700 px-5 pt-5 pb-3 rounded-tl-xl rounded-tr-xl">
                 <div className="flex sm:flex-row flex-col justify-between items-center ">
                   <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none sm:mt-0 mt-3 order-2">
-                    FLUTTER <br className="sm:visible hidden"/> DEVELOPMENT
+                    FLUTTER <br className="sm:visible hidden" /> DEVELOPMENT
                   </h1>
                   <img
                     className="w-[80px] order-1"
@@ -824,7 +931,9 @@ function App() {
                     alt=""
                   />
                 </div>
-                <p className="text-[14px] font-[400] text-center sm:text-start">Ezitech Institute</p>
+                <p className="text-[14px] font-[400] text-center sm:text-start">
+                  Ezitech Institute
+                </p>
               </div>
               <div className="px-7 pt-10">
                 <div className="flex flex-wrap items-center gap-3">
@@ -839,7 +948,7 @@ function App() {
                   <p className="text-[15px] text-[#273044] font-[400] bg-[#e8f1ff]">
                     Hybrid
                   </p>
-                </div> 
+                </div>
 
                 <div className="flex flex-wrap items-center gap-3 mt-3">
                   <div className="flex items-center gap-3">
@@ -883,7 +992,7 @@ function App() {
               <div className="text-white bg-blue-700 px-5 pt-5 pb-3 rounded-tl-xl rounded-tr-xl">
                 <div className="flex sm:flex-row flex-col justify-between items-center ">
                   <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none sm:mt-0 mt-3 order-2">
-                    MACHINE <br className="sm:visible hidden"/> LEARNING
+                    MACHINE <br className="sm:visible hidden" /> LEARNING
                   </h1>
                   <img
                     className="w-[80px] order-1"
@@ -891,7 +1000,9 @@ function App() {
                     alt=""
                   />
                 </div>
-                <p className="text-[14px] font-[400] text-center sm:text-start">Ezitech Institute</p>
+                <p className="text-[14px] font-[400] text-center sm:text-start">
+                  Ezitech Institute
+                </p>
               </div>
               <div className="px-7 pt-10">
                 <div className="flex flex-wrap items-center gap-3">
@@ -951,7 +1062,7 @@ function App() {
               <div className="text-white bg-blue-700 px-5 pt-5 pb-3 rounded-tl-xl rounded-tr-xl">
                 <div className="flex sm:flex-row flex-col justify-between items-center ">
                   <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none sm:mt-0 mt-3 order-2">
-                    MERN <br className="sm:visible hidden"/> DEVELOPMENT
+                    MERN <br className="sm:visible hidden" /> DEVELOPMENT
                   </h1>
                   <img
                     className="w-[80px] order-1"
@@ -959,7 +1070,9 @@ function App() {
                     alt=""
                   />
                 </div>
-                <p className="text-[14px] font-[400] text-center sm:text-start">Ezitech Institute</p>
+                <p className="text-[14px] font-[400] text-center sm:text-start">
+                  Ezitech Institute
+                </p>
               </div>
               <div className="px-7 pt-10">
                 <div className="flex flex-wrap items-center gap-3">
@@ -1021,17 +1134,27 @@ function App() {
           </div>
         </section>
         {/* LEARNING ANYTIME */}
-        <section className="sm:mt-40 mt-20">
+        <section
+          onMouseMove={(e) => handleMouseMove(e)}
+          className="sm:mt-40 mt-20 relative "
+          id="movingDiv"
+        >
           <div className="w-[90%] lg:w-[85%] xl:w-[80%] 2xl:w-[75%] mx-auto flex gap-10 justify-center lg:justify-between ">
-            <div className=" sm:flex justify-center hidden  ">
-              <div className="bg-[#385bce] w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] 2xl:w-[500px] 2xl:h-[500px] rounded-full relative">
-                <img
-                  className="absolute -top-10 left-5 w-[70%]"
-                  src="https://ezitech.org/wp-content/uploads/2022/11/phone-copy.webp"
-                  alt=""
-                />
+            <div className=" ">
+              <div
+                className=" sm:flex justify-center hidden  moving-div"
+                style={{ transform }}
+              >
+                <div className="bg-[#385bce] w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] 2xl:w-[500px] 2xl:h-[500px] rounded-full relative ">
+                  <img
+                    className="absolute -top-10 left-5 w-[70%] "
+                    src="https://ezitech.org/wp-content/uploads/2022/11/phone-copy.webp"
+                    alt=""
+                  />
+                </div>
               </div>
             </div>
+
             <div className="w-[80%] sm:w-[40%] sm:justify-self-end">
               <h1 className="text-[#273044] text-center text-[35px] sm:text-[25px] md:text-[35px] xl:text-[40px] 2xl:text-[46px] font-[700] ">
                 Learn <span className="text-[#2575ed]">anytime</span> from
@@ -1045,7 +1168,7 @@ function App() {
               </p>
 
               <div className="mt-7 flex gap-5 sm:gap-2 md:gap-5 justify-center">
-                <img 
+                <img
                   className="cursor-pointer w-[50%] sm:w-[100px] md:w-full "
                   src="https://ezitech.org/wp-content/uploads/2022/11/appstore-copy.webp"
                   alt=""
@@ -1085,29 +1208,29 @@ function App() {
             </div>
             <div>
               <h1 className="text-[18px] font-[700]">POPULAR COURSES</h1>
-              <div className="flex gap-5 mt-5">
+              <div className="flex gap-5 mt-5 hover:text-blue-500">
                 <img
                   className="w-[50px] h-[50px]"
                   src="https://ezitech.org/wp-content/uploads/2023/03/shutterstock_1936430215-_FILEminimizer_-75x75.webp"
                   alt=""
                 />
                 <div>
-                  <h1 className="text-[14px] font-[700]">
+                  <h1 className="text-[14px] font-[700] cursor-pointer">
                     Online Arbitrage Mastermind 2.0 [R...
                   </h1>
-                  <span className="text-[#AAAAAA] text-[12px] font-[400]">
+                  <span className="text-[#AAAAAA] text-[12px] font-[400] ">
                     By Husnain Ali
                   </span>
                 </div>
               </div>
-              <div className="flex gap-5 mt-5">
+              <div className="flex gap-5 mt-5 hover:text-blue-500">
                 <img
                   className="w-[50px] h-[50px]"
                   src="https://ezitech.org/wp-content/uploads/2023/07/5167842_cafe-75x75.webp"
                   alt=""
                 />
                 <div className="">
-                  <h1 className="text-[14px] font-[700]">
+                  <h1 className="text-[14px] font-[700] cursor-pointer">
                     Adobe Illustrator Course With Project...
                   </h1>
                   <span className="text-[#AAAAAA] text-[12px] font-[400]">
@@ -1119,7 +1242,9 @@ function App() {
             <div>
               <h1 className="text-[18px] font-[700]">PAGES</h1>
               <ul className="list-disc mt-5 flex flex-col gap-3 pl-3">
-                <li className="text-[12px] font-[400] ">CONTACT US</li>
+                <li className="text-[12px] font-[400] cursor-pointer ">
+                  CONTACT US
+                </li>
                 <li className="text-[12px] font-[400]">SHOP</li>
                 <li className="text-[12px] font-[400]">INTERNSHIP</li>
                 <li className="text-[12px] font-[400]">CODELAB</li>
