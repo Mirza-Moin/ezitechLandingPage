@@ -26,17 +26,17 @@ function App() {
 
         {/* HERO SECTION */}
         <div
-          className="h-screen  w-full bg-img "
+          className="max-h-max   w-screen bg-img   "
           style={{
             backgroundImage:
               'url("https://ezitech.org/wp-content/uploads/2024/02/111.jpg")',
           }}
         >
-          <div className="w-full h-full  bg-[rgba(30,64,175,0.4)] pb-16">
+          <div className="w-full h-full  bg-[rgba(30,64,175,0.4)] pb-16 ">
             <DesktopNavBar />
 
             <div>
-              <h1 className="text-white text-[48px] font-[700] w-[50%] mx-auto pt-32 text-center">
+              <h1 className="text-white text-[48px] font-[700] w-[80%] lg:w-[60%] mx-auto pt-32  text-center">
                 Learn the fundamentals with our experts in
                 <span className="text-[#2575ed] text-[48px] font-[700]">
                   <Typewriter
@@ -59,7 +59,7 @@ function App() {
                 Utilize Effective Training to Reach Your Potential!
               </p>
 
-              <div class="relative w-[30%] mx-auto mt-10 lg1:block hidden">
+              <div class="relative w-[30%] mx-auto mt-10 lg1:block hidden ">
                 <input
                   type="search"
                   id="location-search"
@@ -94,7 +94,7 @@ function App() {
                 Explore our more useful products
               </p>
 
-              <div className="w-[50%] mx-auto lg1:flex items-center justify-center gap-5 hidden ">
+              <div className="w-[50%] mx-auto lg1:flex items-center justify-center gap-5 hidden relative">
                 <img
                   className="w-[250px] h-auto"
                   style={{ objectFit: "contain" }}
@@ -102,14 +102,14 @@ function App() {
                   alt=""
                 />
                 <img
-                  className="w-[200px] h-auto "
+                  className="w-[170px] h-auto "
                   style={{ objectFit: "contain" }}
                   src="https://ezitech.org/wp-content/uploads/2023/11/white-ezipos.png"
                   alt=""
                 />
                 <img
-                  className="w-[300px] h-auto"
-                  style={{ objectFit: "contain" }}
+                  className="w-[300px] h-auto mb-5 "
+                  style={{ objectFit:"cover" }}
                   src="https://ezitech.org/wp-content/uploads/2023/10/white-lgooo-01.png"
                   alt=""
                 />
@@ -125,9 +125,9 @@ function App() {
           <h1 className="text-[33px] font-[700] text-center">
             Best IT Services Award 2023
           </h1>
-          <div className="flex md:flex-row flex-col  gap-16 w-[70%] mx-auto mt-5">
+          <div className="flex md:flex-row flex-col items-center md:items-baseline  gap-16 md:w-[90%] lg:w-[85%] xl:w-[80%] 2xl:w-[70%] mx-auto mt-5">
             <img
-              className="md:w-[30%] w-[100%] "
+              className="md:w-[40%] w-[80%] h-auto "
               src="https://ezitech.org/wp-content/uploads/2024/02/President-of-pakistan-259x299.png"
               alt=""
             />
@@ -204,7 +204,7 @@ function App() {
                 src="https://ezitech.org/wp-content/uploads/2022/05/artificial-intelligence-3-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3">ML & AI</p>
+              <p className="text-center font-bold mt-3 py-3 turncate">ML & AI</p>
             </div>
             <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
               <img
@@ -212,7 +212,7 @@ function App() {
                 src="https://ezitech.org/wp-content/uploads/2022/05/blockchain-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3">Block Chain</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">Block Chain</p>
             </div>
             <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
               <img
@@ -220,7 +220,7 @@ function App() {
                 src="https://ezitech.org/wp-content/uploads/2022/05/aaaa-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3">Amazon</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">Amazon</p>
             </div>
             <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
               <img
@@ -228,7 +228,7 @@ function App() {
                 src="https://ezitech.org/wp-content/uploads/2022/05/cccccc-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3">Cyber Security</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">Cyber Security</p>
             </div>
             <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
               <img
@@ -236,7 +236,7 @@ function App() {
                 src="https://ezitech.org/wp-content/uploads/2022/05/ffff-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3">Development</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">Development</p>
             </div>
             <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
               <img
@@ -244,7 +244,7 @@ function App() {
                 src="https://ezitech.org/wp-content/uploads/2022/05/www-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3">Designing</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">Designing</p>
             </div>
             <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
               <img
@@ -252,7 +252,7 @@ function App() {
                 src="https://ezitech.org/wp-content/uploads/2022/05/vvvv-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3">Gaming</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">Gaming</p>
             </div>
             <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
               <img
@@ -260,7 +260,7 @@ function App() {
                 src="https://ezitech.org/wp-content/uploads/2022/05/ssss-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3">Architecture</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">Architecture</p>
             </div>
             <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
               <img
@@ -268,7 +268,7 @@ function App() {
                 src="https://ezitech.org/wp-content/uploads/2022/05/aaaaaaaaaaaaaaaaaaaaaa-69x69.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3">IOS & AND</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">IOS & AND</p>
             </div>
             <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
               <img
@@ -276,7 +276,7 @@ function App() {
                 src="https://ezitech.org/wp-content/uploads/2022/10/social-media-1-63x63.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3">Marketing</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">Marketing</p>
             </div>
             <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
               <img
@@ -284,7 +284,7 @@ function App() {
                 src="https://ezitech.org/wp-content/uploads/2023/03/3d-68x68.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3">3D</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">3D</p>
             </div>
             <div className="py-2 bg-white rounded-xl shadow-2xl hover:-translate-y-3 transition-all duration-250 ease-linear delay-100 cursor-pointer">
               <img
@@ -292,7 +292,7 @@ function App() {
                 src="https://ezitech.org/wp-content/uploads/2023/03/animation-68x68.png"
                 alt=""
               />
-              <p className="text-center font-bold mt-3 py-3">Annimation</p>
+              <p className="text-center font-bold mt-3 py-3 truncate">Annimation</p>
             </div>
           </div>
         </section>
@@ -611,22 +611,22 @@ function App() {
 
           <div className="2xl:w-[75%] xl:w-[85%] w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
             {/* card 1 */}
-            <div className="intern-card shadow-lg rounded-bl-xl rounded-br-xl">
+            <div className="intern-card shadow-lg rounded-bl-xl rounded-br-xl transition-transform duration-300 transform  hover:scale-105">
               <div className="text-white bg-blue-700 px-5 pt-5 pb-3 rounded-tl-xl rounded-tr-xl">
-                <div className="flex justify-between items-center ">
-                  <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none">
-                    HTML/CSS <br /> Javascript
+                <div className="flex sm:flex-row flex-col justify-between items-center ">
+                  <h1 className="text-[25px]  font-[700] pb-2 pr-7 border-b border-gray-300 leading-none sm:mt-0 mt-3 order-2">
+                    HTML/CSS <br className="sm:visible hidden"/> Javascript
                   </h1>
                   <img
-                    className="w-[80px]"
+                    className="w-[80px] order-1"
                     src="https://ezitech.org/wp-content/uploads/2024/02/web-design-511x511.png"
                     alt=""
                   />
                 </div>
-                <p className="text-[14px] font-[400]">Ezitech Institute</p>
+                <p className="text-[14px] font-[400] text-center sm:text-start  text-center sm:text-start">Ezitech Institute</p>
               </div>
               <div className="px-7 pt-10">
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaUserTie className="text-[#042d89]" />
@@ -640,7 +640,7 @@ function App() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex flex-wrap items-center gap-3 mt-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaLocationArrow className="text-[#042d89]" />
@@ -654,7 +654,7 @@ function App() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex flex-wrap items-center gap-3 mt-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaBagShopping className="text-[#042d89]" />
@@ -678,22 +678,22 @@ function App() {
               </div>
             </div>
             {/* card 2 */}
-            <div className="intern-card shadow-lg rounded-bl-xl rounded-br-xl">
+            <div className="intern-card shadow-lg rounded-bl-xl rounded-br-xl transition-transform duration-300 transform  hover:scale-105">
               <div className="text-white bg-blue-700 px-5 pt-5 pb-3 rounded-tl-xl rounded-tr-xl">
-                <div className="flex justify-between items-center ">
-                  <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none">
-                    GRAPHIC <br /> DESIGNING
+                <div className="flex sm:flex-row flex-col justify-between items-center ">
+                  <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none sm:mt-0 mt-3 order-2">
+                    GRAPHIC <br className="sm:visible hidden"/> DESIGNING
                   </h1>
                   <img
-                    className="w-[80px]"
+                    className="w-[80px] order-1"
                     src="https://ezitech.org/wp-content/uploads/2024/02/development-511x511.png"
                     alt=""
                   />
                 </div>
-                <p className="text-[14px] font-[400]">Ezitech Institute</p>
+                <p className="text-[14px] font-[400] text-center sm:text-start">Ezitech Institute</p>
               </div>
               <div className="px-7 pt-10">
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaUserTie className="text-[#042d89]" />
@@ -707,7 +707,7 @@ function App() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex flex-wrap items-center gap-3 mt-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaLocationArrow className="text-[#042d89]" />
@@ -721,7 +721,7 @@ function App() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex flex-wrap items-center gap-3 mt-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaBagShopping className="text-[#042d89]" />
@@ -745,22 +745,22 @@ function App() {
               </div>
             </div>
             {/* card-3 */}
-            <div className="intern-card shadow-lg rounded-bl-xl rounded-br-xl">
+            <div className="intern-card shadow-lg rounded-bl-xl rounded-br-xl transition-transform duration-300 transform  hover:scale-105">
               <div className="text-white bg-blue-700 px-5 pt-5 pb-3 rounded-tl-xl rounded-tr-xl">
-                <div className="flex justify-between items-center ">
-                  <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none">
-                    DIGITAL <br /> MARKETING
+                <div className="flex sm:flex-row flex-col justify-between items-center ">
+                  <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none sm:mt-0 mt-3 order-2">
+                    DIGITAL <br className="sm:visible hidden"/> MARKETING
                   </h1>
                   <img
-                    className="w-[80px]"
+                    className="w-[80px] order-1"
                     src="https://ezitech.org/wp-content/uploads/2024/02/digital-marketing-511x511.png"
                     alt=""
                   />
                 </div>
-                <p className="text-[14px] font-[400]">Ezitech Institute</p>
+                <p className="text-[14px] font-[400] text-center sm:text-start">Ezitech Institute</p>
               </div>
               <div className="px-7 pt-10">
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaUserTie className="text-[#042d89]" />
@@ -774,7 +774,7 @@ function App() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex flex-wrap items-center gap-3 mt-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaLocationArrow className="text-[#042d89]" />
@@ -788,7 +788,7 @@ function App() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex flex-wrap items-center gap-3 mt-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaBagShopping className="text-[#042d89]" />
@@ -812,22 +812,22 @@ function App() {
               </div>
             </div>
             {/* card -4 */}
-            <div className="intern-card shadow-lg rounded-bl-xl rounded-br-xl">
+            <div className="intern-card shadow-lg rounded-bl-xl rounded-br-xl transition-transform duration-300 transform  hover:scale-105">
               <div className="text-white bg-blue-700 px-5 pt-5 pb-3 rounded-tl-xl rounded-tr-xl">
-                <div className="flex justify-between items-center ">
-                  <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none">
-                    FLUTTER <br /> DEVELOPMENT
+                <div className="flex sm:flex-row flex-col justify-between items-center ">
+                  <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none sm:mt-0 mt-3 order-2">
+                    FLUTTER <br className="sm:visible hidden"/> DEVELOPMENT
                   </h1>
                   <img
-                    className="w-[80px]"
+                    className="w-[80px] order-1"
                     src="https://ezitech.org/wp-content/uploads/2024/02/app-development-511x511.png"
                     alt=""
                   />
                 </div>
-                <p className="text-[14px] font-[400]">Ezitech Institute</p>
+                <p className="text-[14px] font-[400] text-center sm:text-start">Ezitech Institute</p>
               </div>
               <div className="px-7 pt-10">
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaUserTie className="text-[#042d89]" />
@@ -839,9 +839,9 @@ function App() {
                   <p className="text-[15px] text-[#273044] font-[400] bg-[#e8f1ff]">
                     Hybrid
                   </p>
-                </div>
+                </div> 
 
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex flex-wrap items-center gap-3 mt-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaLocationArrow className="text-[#042d89]" />
@@ -855,7 +855,7 @@ function App() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex flex-wrap items-center gap-3 mt-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaBagShopping className="text-[#042d89]" />
@@ -879,22 +879,22 @@ function App() {
               </div>
             </div>
             {/* card 5 */}
-            <div className="intern-card shadow-lg rounded-bl-xl rounded-br-xl">
+            <div className="intern-card shadow-lg rounded-bl-xl rounded-br-xl transition-transform duration-300 transform  hover:scale-105">
               <div className="text-white bg-blue-700 px-5 pt-5 pb-3 rounded-tl-xl rounded-tr-xl">
-                <div className="flex justify-between items-center ">
-                  <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none">
-                    MACHINE <br /> LEARNING
+                <div className="flex sm:flex-row flex-col justify-between items-center ">
+                  <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none sm:mt-0 mt-3 order-2">
+                    MACHINE <br className="sm:visible hidden"/> LEARNING
                   </h1>
                   <img
-                    className="w-[80px]"
+                    className="w-[80px] order-1"
                     src="https://ezitech.org/wp-content/uploads/2024/02/web-services-511x511.png"
                     alt=""
                   />
                 </div>
-                <p className="text-[14px] font-[400]">Ezitech Institute</p>
+                <p className="text-[14px] font-[400] text-center sm:text-start">Ezitech Institute</p>
               </div>
               <div className="px-7 pt-10">
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaUserTie className="text-[#042d89]" />
@@ -908,7 +908,7 @@ function App() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex flex-wrap items-center gap-3 mt-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaLocationArrow className="text-[#042d89]" />
@@ -922,7 +922,7 @@ function App() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex flex-wrap items-center gap-3 mt-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaBagShopping className="text-[#042d89]" />
@@ -947,22 +947,22 @@ function App() {
             </div>
             {/* card -6
              */}
-            <div className="intern-card shadow-lg">
+            <div className="intern-card shadow-lg rounded-bl-xl rounded-br-xl transition-transform duration-300 transform  hover:scale-105 ">
               <div className="text-white bg-blue-700 px-5 pt-5 pb-3 rounded-tl-xl rounded-tr-xl">
-                <div className="flex justify-between items-center ">
-                  <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none">
-                    MERN <br /> DEVELOPMENT
+                <div className="flex sm:flex-row flex-col justify-between items-center ">
+                  <h1 className="text-[25px] font-[700] pb-2 pr-7 border-b border-gray-300 leading-none sm:mt-0 mt-3 order-2">
+                    MERN <br className="sm:visible hidden"/> DEVELOPMENT
                   </h1>
                   <img
-                    className="w-[80px]"
+                    className="w-[80px] order-1"
                     src="https://ezitech.org/wp-content/uploads/2024/02/clean-code-511x511.png"
                     alt=""
                   />
                 </div>
-                <p className="text-[14px] font-[400]">Ezitech Institute</p>
+                <p className="text-[14px] font-[400] text-center sm:text-start">Ezitech Institute</p>
               </div>
               <div className="px-7 pt-10">
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaUserTie className="text-[#042d89]" />
@@ -976,7 +976,7 @@ function App() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex flex-wrap items-center gap-3 mt-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaLocationArrow className="text-[#042d89]" />
@@ -990,7 +990,7 @@ function App() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex flex-wrap items-center gap-3 mt-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-[#e8f1ff] rounded-full p-3">
                       <FaBagShopping className="text-[#042d89]" />
@@ -1021,37 +1021,37 @@ function App() {
           </div>
         </section>
         {/* LEARNING ANYTIME */}
-        <section className="mt-40">
-          <div className="w-[75%] mx-auto flex justify-between ">
-            <div className=" flex justify-center  w-[50%]">
-              <div className="bg-[#385bce] w-[500px] h-[500px] rounded-full ">
+        <section className="sm:mt-40 mt-20">
+          <div className="w-[90%] lg:w-[85%] xl:w-[80%] 2xl:w-[75%] mx-auto flex gap-10 justify-center lg:justify-between ">
+            <div className=" sm:flex justify-center hidden  ">
+              <div className="bg-[#385bce] w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] 2xl:w-[500px] 2xl:h-[500px] rounded-full relative">
                 <img
-                  className="relative -top-20 -left-5"
+                  className="absolute -top-10 left-5 w-[70%]"
                   src="https://ezitech.org/wp-content/uploads/2022/11/phone-copy.webp"
                   alt=""
                 />
               </div>
             </div>
-            <div className="w-[40%] justify-self-end">
-              <h1 className="text-[#273044] text-[46px] font-[700] ">
+            <div className="w-[80%] sm:w-[40%] sm:justify-self-end">
+              <h1 className="text-[#273044] text-center text-[35px] sm:text-[25px] md:text-[35px] xl:text-[40px] 2xl:text-[46px] font-[700] ">
                 Learn <span className="text-[#2575ed]">anytime</span> from
                 anywhere
               </h1>
-              <p className="text-[#273044] text-[16px] font-[400] leading-loose mt-5">
+              <p className="text-[#273044] md:text-[12px] xl:text-[16px] font-[400] leading-loose mt-5 hidden md:block">
                 Increase the mobility level with Eziline Technologies LMS App.
                 Take your courses in your pocket and access them whenever you
                 want without any limits. Make your learning more engaging and
                 productive using modern LMS app.
               </p>
 
-              <div className="mt-7 flex gap-5">
-                <img
-                  className="cursor-pointer"
+              <div className="mt-7 flex gap-5 sm:gap-2 md:gap-5 justify-center">
+                <img 
+                  className="cursor-pointer w-[50%] sm:w-[100px] md:w-full "
                   src="https://ezitech.org/wp-content/uploads/2022/11/appstore-copy.webp"
                   alt=""
                 />
                 <img
-                  className="cursor-pointer"
+                  className="cursor-pointer w-[50%] sm:w-[100px] md:w-full"
                   src="https://stylemixthemes.com/masterstudy/tech/wp-content/uploads/sites/21/2021/02/%D0%98%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_22.png"
                   alt=""
                 />
@@ -1061,7 +1061,7 @@ function App() {
         </section>
 
         {/* FOOTER */}
-        <section className="footer py-10 mt-[9rem]">
+        <section className="footer py-10 mt-10">
           <h1 className="text-white text-[36px] font-[700] text-center w-[40%] mx-auto">
             It’s time to <span className="text-blue-500">start</span> investing
             in yourself
@@ -1072,7 +1072,7 @@ function App() {
             alt=""
           />
 
-          <div className="mt-10 w-[90%] xl:w-[85%] 2xl:w-[75%] px-5 sm:mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-white">
+          <div className="mt-20 w-[90%] xl:w-[85%] 2xl:w-[75%] px-5 sm:mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-white">
             <div>
               <h1 className="text-[18px] font-[700]">ABOUT</h1>
               <p className="text-[13px] font-[400] mt-5">
@@ -1118,7 +1118,7 @@ function App() {
             </div>
             <div>
               <h1 className="text-[18px] font-[700]">PAGES</h1>
-              <ul className="list-disc mt-5 flex flex-col gap-3">
+              <ul className="list-disc mt-5 flex flex-col gap-3 pl-3">
                 <li className="text-[12px] font-[400] ">CONTACT US</li>
                 <li className="text-[12px] font-[400]">SHOP</li>
                 <li className="text-[12px] font-[400]">INTERNSHIP</li>

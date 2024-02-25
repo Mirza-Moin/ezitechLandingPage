@@ -11,13 +11,25 @@ body{
 .top-header{
     font-family: "Poppins", sans-serif;
 }
+.search-btn{
+    border: 3px solid white;
+    background: linear-gradient(to left, transparent 50%, #2575ed 50%) right;
+    
+    background-size: 200%;
+    transition: 0.8s ease-out;
+}
+.search-btn:hover{
+    border: 3px solid #2575ed;
+    /* background-color: #2575ed; */
+    background-position: left;
+}
 li{
     cursor: pointer;
 }
 .bg-img{
     /* background-repeat: no-repeat; */
     /* background-position: center; */
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     /* background-position: center; */ 
 }
@@ -31,6 +43,7 @@ li{
 .footer{
     background: linear-gradient(to bottom, #0e2b70 50%,#042d89 50%);
 }
+
 
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
